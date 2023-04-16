@@ -11,5 +11,6 @@ function totalPhoneBill(log){
       }
     }
     
-    return `R${bill.toFixed(2)}`;
+    return bill.toFixed(2);
 }
+

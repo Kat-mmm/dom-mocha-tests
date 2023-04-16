@@ -7,13 +7,6 @@ describe('Text Bill Tests', ()=>{
     
             assert.equal(0.65, textBills.getTotal())
         })
-        it('if you send a single sms the sms total should be added by R0.65', ()=>{
-            let textBills = textBill();
-    
-            textBills.doCallOrSms('sms');
-    
-            assert.equal(0.65, textBills.smsTotals())
-        })
         it('if you send a single call the total should be added by R2.75', ()=>{
             let textBills = textBill();
     
@@ -21,13 +14,7 @@ describe('Text Bill Tests', ()=>{
     
             assert.equal(2.75, textBills.getTotal())
         })
-        it('if you send a single call the call total should be added by R2.75', ()=>{
-            let textBills = textBill();
-    
-            textBills.doCallOrSms('call');
-    
-            assert.equal(2.75, textBills.callTotals())
-        })
+        
         it('if you send a sms and make a call the total should be R3.40', ()=>{
             let textBills = textBill();
     
@@ -44,6 +31,42 @@ describe('Text Bill Tests', ()=>{
             textBills.doCallOrSms('CALL');
     
             assert.equal(3.40, textBills.getTotal())
+        })
+    })
+
+    describe('Call Total and Sms Total', ()=>{
+        it('if you send a single sms the sms total should be added by R0.65', ()=>{
+            let textBills = textBill();
+    
+            textBills.doCallOrSms('sms');
+    
+            assert.equal(0.65, textBills.smsTotals())
+        })
+        
+        it('if you send a single call the call total should be added by R2.75', ()=>{
+            let textBills = textBill();
+    
+            textBills.doCallOrSms('call');
+    
+            assert.equal(2.75, textBills.callTotals())
+        })
+
+        it("if you send a two sms's the sms total should be R1.30", ()=>{
+            let textBills = textBill();
+    
+            textBills.doCallOrSms('sms');
+            textBills.doCallOrSms('sms');
+    
+            assert.equal(1.30, textBills.smsTotals())
+        })
+
+        it("if you send a two call's the call total should be R5.50", ()=>{
+            let textBills = textBill();
+    
+            textBills.doCallOrSms('call');
+            textBills.doCallOrSms('call');
+    
+            assert.equal(5.50, textBills.callTotals())
         })
     })
 
